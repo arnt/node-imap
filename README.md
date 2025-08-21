@@ -749,6 +749,5 @@ TODO
 Several things not yet implemented in no particular order:
 
 * Support additional IMAP commands/extensions:
-  * NOTIFY (via NOTIFY extension -- RFC5465)
   * STATUS addition to LIST (via LIST-STATUS extension -- RFC5819)
   * QRESYNC (RFC5162)
