@@ -733,6 +733,14 @@ Extensions Supported
 
           **Note:** specifying no `options` or [] for `options` is the same as ['ALL']
 
+* **RFC5161**
+
+    * Server capability: ENABLE
+
+      The ENABLE command instructs the server to turn on a few kinds of extended syntax. Node-imap automatically uses ENABLE to declare that the server may send UTF8 strings (because node-imap can parse them).
+
+      There are no additional methods.
+
 * **RFC5256**
 
     * Server capability: SORT
@@ -755,6 +763,31 @@ Extensions Supported
 
           * **thread**(< _string_ >algorithm, < _array_ >searchCriteria, < _function_ >callback) - _(void)_ - Performs a regular search with `searchCriteria` and groups the resulting search results using the given `algorithm` (e.g. 'references', 'orderedsubject'). `callback` has 2 parameters: < _Error_ >err, < _array_ >UIDs. `UIDs` is a nested array.
 
+* **RFC5465**
+
+    * Server capability: NOTIFY
+
+      Node-imap delivers a 'mail' event when there is new mail (in the currently open mailbox). It uses either the IDLE or NOTIFY server extensions, depending on what the server supports. The timing of the 'mail' event may vary by up to two seconds depending on which extension is used.
+
+      There are no additional methods.
+
+* **RFC6851**
+
+    * Server capability: MOVE
+
+      If the server supports the MOVE extension, node-imap can move messages to another mailbox atomically. If the server does not, move() falls back to using a workaround (which can fail, leaving messages in both mailboxes).
+
+      There are no additional methods.
+
+* **RFC9755**
+
+    * Server capability: UTF8=ACCEPT
+
+      This extension supports messages that use UTF8 in email addresses as specified in [RFC6530](https://www.rfc-editor.org/rfc/rfc6530.html), and allows using UTF8 in several cases where various encodings had to be used before. Node-imap uses it automatically and transparently.
+
+      There are no additional methods.
+
+
 Applied Pull Requests
 =====================
 
@@ -769,6 +802,7 @@ Applied Pull Requests
 - [#472](https://github.com/mscdex/node-imap/pull/472) Connection.js: socket needs to be set up in the case of tls
 - [#466](https://github.com/mscdex/node-imap/pull/466) Adding CRAM-MD5 server authentication
 - [#439](https://github.com/mscdex/node-imap/pull/439) Remove useless mail event with entire that counts entire box as new after openBox
+- [#15](https://github.com/mikebevz/node-imap/pull/15) Add support for [NOTIFY](https://www.rfc-editor.org/rfc/rfc5465.html) and [UTF8=ACCEPT](https://www.rfc-editor.org/rfc/rfc9755.html)
 
 
 
